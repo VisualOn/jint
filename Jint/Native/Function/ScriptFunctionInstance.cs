@@ -122,7 +122,7 @@ namespace Jint.Native.Function
 
             if (count == 0)
             {
-                return System.Array.Empty<string>();
+                return System.ArrayExt.Empty<string>();
             }
 
             var names = new string[count];

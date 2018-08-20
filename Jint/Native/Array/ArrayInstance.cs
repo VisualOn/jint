@@ -28,7 +28,7 @@ namespace Jint.Native.Array
         {
             if (capacity < MaxDenseArrayLength)
             {
-                _dense = capacity > 0 ? new PropertyDescriptor[capacity] : System.Array.Empty<PropertyDescriptor>();
+                _dense = capacity > 0 ? new PropertyDescriptor[capacity] : System.ArrayExt.Empty<PropertyDescriptor>();
             }
             else
             {
@@ -41,7 +41,7 @@ namespace Jint.Native.Array
             int length = 0;
             if (items == null || items.Length == 0)
             {
-                _dense = System.Array.Empty<PropertyDescriptor>();
+                _dense = System.ArrayExt.Empty<PropertyDescriptor>();
                 length = 0;
             }
             else
