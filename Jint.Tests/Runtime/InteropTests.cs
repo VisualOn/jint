@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Jint.Native;
 using Jint.Native.Array;
@@ -1619,6 +1620,20 @@ namespace Jint.Tests.Runtime
             Assert.Throws<ArgumentNullException>(() => engine.Invoke("throwException2"));
             Assert.Equal(engine.Invoke("throwException3").AsString(), exceptionMessage);
             Assert.Throws<ArgumentNullException>(() => engine.Invoke("throwException4"));
+        }
+
+        [Fact]
+        public void ShouldConvertEnumerableToArray()
+        {
+            _engine.SetValue("a", new[] { new Person { Name = "Mike" }, new Person { Name = "Mika" } }.ToList());
+
+            RunTest(@"
+                assert(new Array(a).length === 2);
+            ");
+
+            RunTest(@"
+                assert(Array.from(a).length === 2);
+            ");
         }
     }
 }
